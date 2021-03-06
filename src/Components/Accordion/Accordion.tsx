@@ -1,10 +1,15 @@
 import React from "react";
 import {RatingValueType} from "../RatingTwo/RatingTwo";
-
+export type  ItemType = {
+    title:string
+    value:any
+}
 export type  AccordionPropsType = {
+    onClick:(value:any) => void
     titleValue: string
     accCollapsed: boolean
     setAccCollapsed: (value:boolean) => void
+    items:ItemType[]
 }
 
 
@@ -15,13 +20,13 @@ export function Accordion(props: AccordionPropsType) {
                 <AccordionTitle title={props.titleValue} setAccCollapsed={props.setAccCollapsed}
                                 accCollapsed={props.accCollapsed}
                 />
-                {!props.accCollapsed  && <AccordionBody/>}
+                {!props.accCollapsed  && <AccordionBody items={props.items} onClick={props.onClick}/>}
             </div>
         )
     }
 
 
-type  AccordionTitlePropsType = {
+type AccordionTitlePropsType = {
     title: string
     setAccCollapsed: (value:boolean) => void
     accCollapsed: boolean
@@ -40,16 +45,16 @@ function AccordionTitle(props: AccordionTitlePropsType) {
 type  AccordionBodyPropsType = {
     title: string
 }
-function AccordionBody() {
+export type  AccordionBodyType = {
+onClick:(value:any) => void
+    items:ItemType[]
+}
+
+function AccordionBody(props:AccordionBodyType) {
     console.log("AccordionBody rendering")
     return (
         <div>
-
-            <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-            </ul>
+            {props.items.map((i,index)=> <li onClick={()=>{props.onClick(i.value)}} key={index}>{i.title}</li>)}
         </div>
     )
 }
