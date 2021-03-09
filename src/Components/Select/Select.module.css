@@ -1,0 +1,16 @@
+.select .main{
+    border: 1px solid black;
+    min-height: 20px;
+    min-width:20px ;
+}
+
+.items {
+ border: 1px solid red;
+ position: absolute;
+ padding: 5px;
+}
+
+.item.selected {
+    background-color: blue;
+    color: #e7fdd8;
+}
