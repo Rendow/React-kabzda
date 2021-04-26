@@ -24,5 +24,7 @@ export const Clock: React.FC<PropsType> = () =>{
         <span>{getStringWithZero(date.getMinutes())}</span>
         :
         <span>{getStringWithZero(date.getSeconds())}</span>
+        <hr/>
+        <div> {date.toLocaleTimeString('ru-RU')}</div>
     </div>
 }
